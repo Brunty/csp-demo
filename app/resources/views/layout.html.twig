@@ -1,0 +1,26 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Ellingson Mineral Company{% endblock %}</title>
+    <link rel="stylesheet" href="//csp.dev/assets/app.css">
+</head>
+<body>
+{#Ellingson Mineral Company#}
+<header>
+    <a id="logo" class="header-link" href="/"><img src="assets/images/emc.jpg" alt=""/></a>
+    <nav>
+        <ul>
+            <li><a href="/the-gibson">The Gibson</a></li>
+            <!--<li><a href="/garbage-files?secure_message=Files secured.">Garbage Files</a></li>-->
+        </ul>
+    </nav>
+</header>
+
+<div id="main_content">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>
