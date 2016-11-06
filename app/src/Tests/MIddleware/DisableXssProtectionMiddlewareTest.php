@@ -2,7 +2,6 @@
 
 namespace App\Tests\Middleware;
 
-use App\Middleware\CspMiddleware;
 use App\Middleware\DisableXssProtectionMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Http\Response;
