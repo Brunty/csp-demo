@@ -9,7 +9,7 @@
         }
     },
     "config": {
-        "bin-bir": "bin"
+        "bin-dir": "bin"
     },
     "require-dev": {
         "zendframework/zend-diactoros": "^1.3",
