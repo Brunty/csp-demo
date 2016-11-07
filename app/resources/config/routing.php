@@ -21,8 +21,7 @@ $app->get(
     }
 );
 
-$app->map(
-    ['GET', 'POST'],
+$app->get(
     '/garbage-files',
     function (Request $request, Response $response, $args) {
         return $this->view->render(
