@@ -15,7 +15,7 @@ class DisableXssProtectionMiddlewareTest extends \PHPUnit_Framework_TestCase
      */
     public function it_adds_the_header_to_the_response()
     {
-        $request = ServerRequestFactory::fromGlobals(['REMOTE_ADDR' => '192.168.1.1']);
+        $request = ServerRequestFactory::fromGlobals();
         $response = new Response();
 
         $middleware = new DisableXssProtectionMiddleware;

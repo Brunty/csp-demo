@@ -5,27 +5,41 @@ namespace App\Tests\Middleware;
 use App\Middleware\CspReportOnlyMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Http\Response;
+use Zend\Diactoros\ServerRequest;
 use Zend\Diactoros\ServerRequestFactory;
 
 class CspReportOnlyMiddlewareTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
+     * @var ServerRequest
+     */
+    private $request;
+
+    /**
+     * @var Response
+     */
+    private $response;
+
+    public function setUp()
+    {
+        $this->request = ServerRequestFactory::fromGlobals();
+        $this->response = new Response();
+    }
+
+    /**
      * @test
      */
     public function it_adds_the_header_to_the_response()
     {
-        $request = ServerRequestFactory::fromGlobals(['REMOTE_ADDR' => '192.168.1.1']);
-        $response = new Response();
-
         $middleware = new CspReportOnlyMiddleware("default-src: 'none'; script-src: 'self';");
 
         /**
          * @var ResponseInterface $middlewareResponse
          */
         $middlewareResponse = $middleware(
-            $request,
-            $response,
+            $this->request,
+            $this->response,
             function ($request, $response) {
                 return $response;
             }
@@ -42,9 +56,6 @@ class CspReportOnlyMiddlewareTest extends \PHPUnit_Framework_TestCase
      */
     public function it_adds_the_header_with_a_nonce_to_the_response()
     {
-        $request = ServerRequestFactory::fromGlobals(['REMOTE_ADDR' => '192.168.1.1']);
-        $response = new Response();
-
         $middleware = new CspReportOnlyMiddleware(
             "default-src: 'none'; script-src: 'self' 'nonce-%s';",
             'thisIsATotallySecureNonceString'
@@ -54,8 +65,8 @@ class CspReportOnlyMiddlewareTest extends \PHPUnit_Framework_TestCase
          * @var ResponseInterface $middlewareResponse
          */
         $middlewareResponse = $middleware(
-            $request,
-            $response,
+            $this->request,
+            $this->response,
             function ($request, $response) {
                 return $response;
             }
@@ -72,17 +83,14 @@ class CspReportOnlyMiddlewareTest extends \PHPUnit_Framework_TestCase
      */
     public function it_adds_the_header_to_the_response_if_no_nonce_is_given()
     {
-        $request = ServerRequestFactory::fromGlobals(['REMOTE_ADDR' => '192.168.1.1']);
-        $response = new Response();
-
         $middleware = new CspReportOnlyMiddleware("default-src: 'none'; script-src: 'self' 'nonce-%s';");
 
         /**
          * @var ResponseInterface $middlewareResponse
          */
         $middlewareResponse = $middleware(
-            $request,
-            $response,
+            $this->request,
+            $this->response,
             function ($request, $response) {
                 return $response;
             }
