@@ -1,5 +1,6 @@
 <?php
 
+use App\Middleware\CspMiddleware;
 use App\Middleware\DisableXssProtectionMiddleware;
 
 /*
@@ -9,3 +10,4 @@ use App\Middleware\DisableXssProtectionMiddleware;
  * what I want to show.
  */
 $app->add(new DisableXssProtectionMiddleware);
+$app->add(new CspMiddleware($container['app.generator.nonce.generated_nonce']));

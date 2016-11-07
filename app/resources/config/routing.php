@@ -1,10 +1,7 @@
 <?php
 
-use App\Middleware\CspMiddleware;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-
-$cspMiddleWare = new CspMiddleware($app->getContainer()['app.generator.nonce.generated_nonce']);
 
 $app->get(
     '/',
@@ -22,7 +19,7 @@ $app->get(
             ['nonce' => $this['app.generator.nonce.generated_nonce']]
         );
     }
-)->add($cspMiddleWare);
+);
 
 $app->map(
     ['GET', 'POST'],
