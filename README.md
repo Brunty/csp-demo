@@ -8,6 +8,6 @@ Then run:
 
 If you wish to re-create the things shown in the live demo I've done - here are the various pieces to the pizzle:
 
-`app/src/Middleware/CspMiddleware/.php` is the class that adds middleware to a response in the app. It has the policy passed in as it's first constructor argument - the middleware is attached to routes for the application in `app/resources/config/routing.php`
+`app/src/Middleware/CspMiddleware.php` is the class that adds middleware to a response in the app. It has the policy passed in as it's first constructor argument - the middleware is attached to routes for the application in `app/resources/config/routing.php`
 
-Alternatively if you want to activate Report-Only mode, use: `app/src/Middleware/CspReportOnlyMiddleware/.php`
+Alternatively if you want to activate Report-Only mode, use: `app/src/Middleware/CspReportOnlyMiddleware.php`
