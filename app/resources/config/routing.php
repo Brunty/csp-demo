@@ -15,8 +15,7 @@ $app->get(
     function (Request $request, Response $response) {
         return $this->view->render(
             $response,
-            'the-gibson.html.twig',
-            ['nonce' => $this['app.generator.nonce.generated_nonce']]
+            'the-gibson.html.twig'
         );
     }
 );
@@ -24,11 +23,31 @@ $app->get(
 $app->get(
     '/garbage-files',
     function (Request $request, Response $response, $args) {
+        $filename = $this->config['app']['dirs']['root'] . '/var/cache/note';
+        $content = '';
+
+        if (file_exists($filename)) {
+            $content = file_get_contents($filename);
+        }
+
         return $this->view->render(
             $response,
             'garbage-files.html.twig',
-            ['secure_message' => $request->getQueryParams()['secure_message'] ?? null]
+            [
+                'secure_message' => $request->getQueryParams()['secure_message'] ?? null,
+                'note_content'   => $content
+            ]
         );
+    }
+);
+
+$app->post(
+    '/garbage-files',
+    function (Request $request, Response $response, $args) {
+        $filename = $this->config['app']['dirs']['root'] . '/var/cache/note';
+        file_put_contents($filename, $request->getParsedBody()['note']);
+
+        return $response->withHeader('Location', '/garbage-files?secure_message=Files updated');
     }
 );
 

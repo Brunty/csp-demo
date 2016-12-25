@@ -1,2 +1,6 @@
 /vendor
 /bin
+/var/*
+!/var/cache
+/var/cache/*
+!var/cache/.gitkeep

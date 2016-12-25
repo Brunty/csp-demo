@@ -13,4 +13,4 @@ $app->add(new DisableXssProtectionMiddleware);
 /*
  * Now let's add our CSP middleware
  */
-$app->add(new CspMiddleware($container['config']['security']['csp'], $container['app.generator.nonce.generated_nonce']));
+//$app->add(new CspMiddleware($container['config']['security']['csp'], $container['app.generator.nonce.generated_nonce']));
