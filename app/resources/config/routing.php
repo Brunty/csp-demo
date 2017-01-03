@@ -23,6 +23,7 @@ $app->get(
 $app->get(
     '/garbage-files',
     function (Request $request, Response $response, $args) {
+
         $filename = $this->config['app']['dirs']['root'] . '/var/cache/note';
         $content = '';
 
