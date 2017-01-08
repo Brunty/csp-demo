@@ -43,7 +43,7 @@ class CspMiddleware
     {
         $newResponse = $response->withAddedHeader(
             "Content-Security-Policy",
-            sprintf($this->policy, $this->nonce)
+            sprintf($this->policy, 'nonce-' . $this->nonce)
         );
 
         return $next($request, $newResponse);

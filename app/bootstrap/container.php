@@ -9,7 +9,7 @@ $container['view'] = function ($container) {
     $basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
     $view->addExtension(new Slim\Views\TwigExtension($container['router'], $basePath));
 
-    $randomlyGeneratedNonce = (new NonceGenerator)->generateNonce();
+    $randomlyGeneratedNonce = $container['app.generator.nonce.generated_nonce'];
     // Add global to twig so we don't have to add the nonce to every view we render
     $view->getEnvironment()
          ->addGlobal('nonce', $randomlyGeneratedNonce);
