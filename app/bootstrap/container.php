@@ -11,8 +11,7 @@ $container['view'] = function ($container) {
 
     $randomlyGeneratedNonce = $container['app.generator.nonce.generated_nonce'];
     // Add global to twig so we don't have to add the nonce to every view we render
-    $view->getEnvironment()
-         ->addGlobal('nonce', $randomlyGeneratedNonce);
+    $view->getEnvironment()->addGlobal('nonce', $randomlyGeneratedNonce);
 
     return $view;
 };
