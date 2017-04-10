@@ -51,10 +51,3 @@ $app->post(
         return $response->withHeader('Location', '/garbage-files?secure_message=Files updated');
     }
 );
-
-$app->get(
-    '/hello/{name}',
-    function (Request $request, Response $response, $args) {
-        return $this->view->render($response, 'home.html.twig', ['name' => $args['name']]);
-    }
-);

@@ -1,10 +1,5 @@
 version: '2'
 services:
-    app:
-        image: busybox:latest
-        working_dir: /app
-        volumes:
-            - .:/app
     web:
         build: docker/nginx
         working_dir: /app
@@ -13,14 +8,12 @@ services:
             - VIRTUAL_PORT=80
         links:
             - php
-        volumes_from:
-            - app
+        volumes:
+            - .:/app
         depends_on:
             - php
     php:
         build: docker/php-fpm
         working_dir: /app
-        volumes_from:
-            - app
-        depends_on:
-            - app
+        volumes:
+            - .:/app
