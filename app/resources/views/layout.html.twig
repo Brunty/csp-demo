@@ -21,5 +21,10 @@
 <div id="main_content">
     {% block content %}{% endblock %}
 </div>
+
+<script nonce="{{ nonce }}">
+    console.log("%cStop!", "font: 5em sans-serif; font-weight: bold; color: red;");
+    console.log("%cThis area is for developers. If someone has asked you to execute a script within this area of the site, they will take over your account!", "font: 2em sans-serif; font-weight: bold; color: black;");
+</script>
 </body>
 </html>
