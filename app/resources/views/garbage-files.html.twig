@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block content %}
+
+    {#
+        Generally displaying content using `raw` isn't a good idea, you should escape stuff (which twig does by default)
+        Here, I'm using `raw` so I can show the dangers of having unescaped content on your sites / apps.
+    #}
     <h1>{{ secure_message|raw }}</h1>
 
     <div id="notepad">
