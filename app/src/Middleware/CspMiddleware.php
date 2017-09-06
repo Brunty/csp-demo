@@ -44,7 +44,7 @@ class CspMiddleware
     {
         $newResponse = $response->withAddedHeader(
             'Content-Security-Policy',
-            sprintf($this->policy, 'nonce-' . $this->nonce)
+            preg_replace('/{{ nonce }}/i', 'nonce-' . $this->nonce, $this->policy)
         );
 
         return $next($request, $newResponse);

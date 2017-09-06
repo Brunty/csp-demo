@@ -57,7 +57,7 @@ class CspMiddlewareTest extends \PHPUnit_Framework_TestCase
     public function it_adds_the_header_with_a_nonce_to_the_response()
     {
         $middleware = new CspMiddleware(
-            "default-src: 'none'; script-src: 'self' '%s';",
+            "default-src: 'none'; script-src: 'self' '{{ nonce }}';",
             'thisIsATotallySecureNonceString'
         );
 
@@ -83,7 +83,7 @@ class CspMiddlewareTest extends \PHPUnit_Framework_TestCase
      */
     public function it_adds_the_header_to_the_response_if_no_nonce_is_given()
     {
-        $middleware = new CspMiddleware("default-src: 'none'; script-src: 'self' '%s';");
+        $middleware = new CspMiddleware("default-src: 'none'; script-src: 'self' '{{ nonce }}';");
 
         /**
          * @var ResponseInterface $middlewareResponse
