@@ -1,0 +1,20 @@
+version: '2'
+services:
+    web:
+        build: docker/nginx
+        working_dir: /app
+        environment:
+            - VIRTUAL_HOST=csp.docker
+            - VIRTUAL_PORT=80
+            - HTTPS_METHOD=noredirect
+        links:
+            - php
+        volumes:
+            - .:/app
+        depends_on:
+            - php
+    php:
+        build: docker/php-fpm
+        working_dir: /app
+        volumes:
+            - .:/app
