@@ -3,6 +3,7 @@
     "description": "A website to demonstrate CSP concepts.",
     "license": "MIT",
     "require": {
+        "php": ">=7.2",
         "slim/slim": "^3.0",
         "slim/twig-view": "^2.1"
     },
