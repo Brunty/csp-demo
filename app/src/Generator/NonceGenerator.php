@@ -12,6 +12,8 @@ class NonceGenerator
      * @param int $byteLength
      *
      * @return string
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public function generateNonce(int $byteLength = 64) : string
     {
