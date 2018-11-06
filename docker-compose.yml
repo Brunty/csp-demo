@@ -3,6 +3,8 @@ services:
     web:
         build: docker/nginx
         working_dir: /app
+        ports:
+            - "80"
         environment:
             - VIRTUAL_HOST=csp.docker
             - VIRTUAL_PORT=80
